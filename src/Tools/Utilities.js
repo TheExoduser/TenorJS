@@ -42,9 +42,12 @@ exports.callAPI = function (Path, Callback)
 
             Result.on("data", function (Buffer)
             {
+                  rawData += Buffer;
+
                   /**
                    * Path checks.
                    */
+                  /*
                   if (Path.includes("categories"))
                   {
                         dForm = JSON.parse(Buffer).tags;
@@ -66,6 +69,7 @@ exports.callAPI = function (Path, Callback)
                   }
 
                   rawData += JSON.stringify(Data);
+                  */
             });
 
             Result.on("end", () => {
