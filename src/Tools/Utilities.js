@@ -4,7 +4,7 @@
  * TenorJS - Lightweight NodeJS wrapper around the Tenor.com API.
  */
 const FS     = require("fs"),
-      roi    = require("roi"),
+      fetch  = require("node-fetch"),
       Path   = require("path"),
       HTTPS  = require("https"),
       Colors = require("colors"),
@@ -157,12 +157,12 @@ exports.checkConfig = function (Creds)
 exports.checkVersion = function ()
 {
       const Package = {
-            "Git": "https://raw.githubusercontent.com/Jinzulen/TenorJS/master/package.json",
+            "Git": "https://raw.githubusercontent.com/TheExoduser/TenorJS/master/package.json",
             "Home": require(Path.join(__dirname, "../../package.json"))["version"]
       };
 
-      return roi.get(Package["Git"]).then(Response => {
-            let Version = JSON.parse(Response.body).version;
+      return fetch(Package["Git"]).then(Response => {
+            let Version = Response.json().version;
             
             if (Package["Home"] < Version)
             {
